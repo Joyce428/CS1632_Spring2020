@@ -101,11 +101,11 @@ First cd into the Rand directory before executing the scripts.
 
 To run the Rand program (for Windows users):
 ```
-$ runRand.bat
+$ run.bat
 ```
 To run JPF with Rand:
 ```
-$ runJPFRand.bat
+$ runJPF.bat
 ```
 
 For Mac or Linux users, please run the corresponding .sh scripts.
@@ -138,7 +138,7 @@ $ run.bat
 ```
 For Mac or Linux:
 ```
-$ run.sh
+$ ./run.sh
 ```
 
 Now the current implementation contains a couple of bugs.  You will notice
@@ -151,7 +151,7 @@ $ runJPF.bat DrunkCarnivalShooter.win.jpf
 ```
 For Mac or Linux:
 ```
-$ runJPF.sh DrunkCarnivalShooter.macos.jpf
+$ ./runJPF.sh DrunkCarnivalShooter.macos.jpf
 ```
 
 The JPF tool also doesn't show any errors but that is because
