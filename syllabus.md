@@ -117,12 +117,12 @@ AFIST = [_A Friendly Introduction to Software Testing_](software-quality-assuran
   
 ## WEEK 15 (Week of 13 APR)
 
-* (Class 1) ATTENDANCE REQUIRED: Guest Lectures
-  * For Mon/Wed class (Sections 1100, 1120): Google Guest Lecture: Software QA on the Cloud
-  * For Tue/Thu class (Section 1130): CGI Guest Lecture: TBD
-  
-* (Class 2) No Attendance Required: Q & A over Microsoft Teams
+* (Class 1) No Attendance Required: Q & A over Microsoft Teams
   * Midterm 2 review
+  
+* (Class 2) ATTENDANCE REQUIRED: Guest Lectures
+  * For Mon/Wed class (15 APR): Google Guest Lecture: Software QA on the Cloud
+  * For Tue/Thu class (16 APR): CGI Guest Lecture: TBD
   
 * (17 APR) Friday 10:00 AM: Midterm 2 released due (19 APR) Sunday 11:59 PM
   * Take home exam submitted online
