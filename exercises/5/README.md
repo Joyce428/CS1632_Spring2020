@@ -159,7 +159,7 @@ DrunkCarnivalShooter takes user input and JPF does not know how to handle it.
 Just like random numbers, we would like to have JPF to go over every
 possibility.  We will do that by using the Verify API.  But in order to be able
 to use that feature, we first have to import a library at the top of
-DrunkCarnivalShooter.java:
+DrunkCarnivalShooterImpl.java:
 
 ```
 import gov.nasa.jpf.vm.Verify;
