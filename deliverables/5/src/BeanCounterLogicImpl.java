@@ -36,7 +36,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 
 	/**
 	 * Constructor - creates the bean counter logic object that implements the core
-	 * logic. Our bean counter should start with a single bean at the top.
+	 * logic with the provided number of slots.
 	 * 
 	 * @param slotCount the number of slots in the machine
 	 */
