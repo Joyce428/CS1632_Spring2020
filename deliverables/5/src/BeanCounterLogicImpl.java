@@ -87,9 +87,9 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	}
 
 	/**
-	 * Calculates the average slot bean count.
+	 * Calculates the average slot number of all the beans in slots.
 	 * 
-	 * @return average of all slot bean counts
+	 * @return Average slot number of all the beans in slots.
 	 */
 	public double getAverageSlotBeanCount() {
 		// TODO: Implement
