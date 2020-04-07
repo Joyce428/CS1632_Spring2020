@@ -111,7 +111,7 @@ AFIST = [_A Friendly Introduction to Software Testing_](software-quality-assuran
   * Suggested lecture: Pairwise and Combinatorial Testing, Smoke and Exploratory Testing
   * READING: AFIST, Chapter 17, 10-11
 
-* (Class 2) NO CLASS (also no Friday office hours this week).  Will still take emails.
+* (Class 2) No Attendance Required: Q & A over Microsoft Teams
   * Suggested lecture: Security Testing
   * READING: AFIST, Chapter 20
   
