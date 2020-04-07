@@ -58,7 +58,7 @@ AFIST = [_A Friendly Introduction to Software Testing_](software-quality-assuran
   * READING: AFIST, Chapter 15
 
 * (Class 2) Writing Testable Code
-  * READING: AFIST, Chapter 16, 10-11
+  * READING: AFIST, Chapter 16
 
 ## WEEK 7 (Week of 17 FEB)
 
@@ -109,7 +109,7 @@ AFIST = [_A Friendly Introduction to Software Testing_](software-quality-assuran
 
 * (Class 1) No Attendance Required: Q & A over Microsoft Teams
   * Suggested lecture: Pairwise and Combinatorial Testing, Smoke and Exploratory Testing
-  * READING: AFIST, Chapter 17
+  * READING: AFIST, Chapter 17, 10-11
 
 * (Class 2) NO CLASS (also no Friday office hours this week).  Will still take emails.
   * Suggested lecture: Security Testing
