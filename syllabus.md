@@ -57,7 +57,7 @@ AFIST = [_A Friendly Introduction to Software Testing_](software-quality-assuran
 * (Class 1) Test-driven Development
   * READING: AFIST, Chapter 15
 
-* (Class 2) Writing Testable Code, Smoke / Exploratory / Path-based Testing
+* (Class 2) Writing Testable Code
   * READING: AFIST, Chapter 16, 10-11
 
 ## WEEK 7 (Week of 17 FEB)
