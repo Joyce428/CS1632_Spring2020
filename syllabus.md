@@ -121,8 +121,8 @@ AFIST = [_A Friendly Introduction to Software Testing_](software-quality-assuran
   * Midterm 2 review
   
 * (Class 2) ATTENDANCE REQUIRED: Guest Lectures
-  * For Mon/Wed class (15 APR 11:00-12:15, 1:00-2:15): Google Guest Lecture: Software QA on the Cloud
-  * For Tue/Thu class (16 APR 5:30-6:45): CGI Guest Lecture: JUnit testing, Selenium web testing, and JMeter load/stress testing
+  * For Mon/Wed class (15 APR 11:00-12:15, 1:00-2:15): Google Lecture: Software QA on the Cloud
+  * For Tue/Thu class (16 APR 5:30-6:45): CGI Lecture: JUnit testing, Selenium web testing, and JMeter load/stress testing
   
 * (17 APR) Friday 10:00 AM: Midterm 2 released due (19 APR) Sunday 11:59 PM
   * Take home exam submitted online
