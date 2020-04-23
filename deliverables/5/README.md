@@ -25,7 +25,7 @@ difficulty it imposes in working with a partner.  The project has been revised
 to require half the work.  There will be an exercise 5 happening next week (see
 [Syllabus](/syllabus.md) to help you out.
 
-Also note there are NO LATE SUBMISSIONS due to the grading deadline.  
+Due to extension in grading deadline, I will allow late submissions up to April 29, 2020 11:59 PM, with the usual 5 points off per day penalty.
 
 ## Overview
 
