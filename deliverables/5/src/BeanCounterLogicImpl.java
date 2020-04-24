@@ -5,6 +5,7 @@ import java.util.Formatter;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
+import java.text.DecimalFormat;
 
 /**
  * Code by @author Wonsun Ahn
@@ -34,6 +35,16 @@ import java.util.Random;
 public class BeanCounterLogicImpl implements BeanCounterLogic {
 	// TODO: Add member methods and variables as needed
 
+	private int beanCount;
+	private int slotCount;
+	private BeanImpl[] beanTotal;
+	private boolean isLuck;
+
+	private int remainCount;
+	private int[] xPosArray;
+	private int[] slotBeanCount;
+    private LinkedList<BeanImpl> beansInFlight;
+
 	/**
 	 * Constructor - creates the bean counter logic object that implements the core
 	 * logic with the provided number of slots.
@@ -42,6 +53,11 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	BeanCounterLogicImpl(int slotCount) {
 		// TODO: Implement
+		this.slotCount = slotCount;
+ 		beansInFlight = new LinkedList<BeanImpl>();//the normal size of the list will be slotCount(eg. 10)
+ 		slotBeanCount = new int[slotCount];
+ 		xPosArray = new int[slotCount];
+
 	}
 
 	/**
@@ -51,7 +67,8 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public int getSlotCount() {
 		// TODO: Implement
-		return 1;
+
+		return slotCount;
 	}
 	
 	/**
@@ -61,7 +78,10 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public int getRemainingBeanCount() {
 		// TODO: Implement
-		return 0;
+		
+		return remainCount;
+
+		//return 0;
 	}
 
 	/**
@@ -72,7 +92,11 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public int getInFlightBeanXPos(int yPos) {
 		// TODO: Implement
-		return NO_BEAN_IN_YPOS;
+		if(yPos>beansInFlight.size()-1)
+			return NO_BEAN_IN_YPOS;// = -1
+		else
+			return xPosArray[yPos];
+
 	}
 
 	/**
@@ -83,7 +107,7 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public int getSlotBeanCount(int i) {
 		// TODO: Implement
-		return 0;
+		return slotBeanCount[i];
 	}
 
 	/**
@@ -91,9 +115,24 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * 
 	 * @return Average slot number of all the beans in slots.
 	 */
-	public double getAverageSlotBeanCount() {
+	public double getAverageSlotBeanCount() { //WHAT DECIMAL PLACE????
 		// TODO: Implement
-		return 0;
+
+		// the sum of slot values/ number of slots
+		int sum =0;
+		for(int i = 0;i<slotCount;i++){
+			int num = getSlotBeanCount(i);
+			sum += num*i;
+		}
+		double sumD = (double)sum;
+		double totalNum = (double)(beanCount-remainCount-beansInFlight.size());
+		double val = sumD/totalNum;
+
+		val = val*100;
+		val = Math.round(val);
+		val = val /100;
+		
+		return val;
 	}
 
 	/**
@@ -104,6 +143,31 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public void upperHalf() {
 		// TODO: Implement
+
+		//current beans count in the slots
+		int currCount = (beanCount-remainCount);
+		currCount -= beansInFlight.size();
+		int toRemove = 0;
+		//int removed = 0;
+
+		//if((currCount%2)==1){// if currCount is odd
+		// toRemove =	(currCount-1)/2;
+		//}
+		toRemove = currCount/2;
+		for(int i=0;i<slotCount;i++){
+			if(toRemove==0)
+				break;
+			if(slotBeanCount[i]>toRemove){
+				slotBeanCount[i] -= toRemove;
+				break;
+			}else{
+				toRemove -=slotBeanCount[i];
+				slotBeanCount[i] = 0;
+			}
+
+
+		}
+
 	}
 
 	/**
@@ -114,6 +178,36 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public void lowerHalf() {
 		// TODO: Implement
+		//current beans count in the slots
+		//int currCount = (beanCount-remainCount)-beansInFlight.size();
+		int currCount =0;
+		for(int i=0;i<slotCount;i++){
+			currCount+=slotBeanCount[i];
+		}
+
+		int toRemove;
+		//int removed = 0;
+
+		//if((currCount%2)==1){// if currCount is odd
+		// toRemove =	(currCount-1)/2;
+		//}
+		toRemove = currCount/2;
+		for(int i=slotCount-1;i>=slotCount;i--){
+			if(toRemove==0)
+				break;
+			if(slotBeanCount[i]>toRemove){
+				slotBeanCount[i] -= toRemove;
+				break;
+			}else{//if bean count less or equal to toRemove, decrease toRemove by the number of beans in this slot; and remove all the beans in this slot
+				toRemove -=slotBeanCount[i];
+				slotBeanCount[i] = 0;
+			}
+
+		}
+
+
+		//the number of beans in some upper slots will decrease
+
 	}
 
 	/**
@@ -129,6 +223,31 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public void reset(Bean[] beans) {
 		// TODO: Implement
+		beanCount = beans.length;
+
+		beanTotal = new BeanImpl[beanCount];
+
+
+		if(beans.length>0){
+			//downcast
+			BeanImpl bi =(BeanImpl)beans[0];
+			//get the mode(luck or skill) of this game run
+			isLuck = bi.getLuck();
+
+			//initialize the inpflight beans
+			beansInFlight.add(bi);
+			//initialize the first bean's coordinate (0,0)
+			xPosArray[0]=0;
+
+			//initialize the remain to be the total beancount-1 ??? or not -1???
+			remainCount = beanCount-1;
+
+			//copy the array
+			for(int i =0;i<beans.length;i++){
+				beanTotal[i]=(BeanImpl)beans[i];
+			}
+		}
+
 	}
 
 	/**
@@ -136,8 +255,18 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 * in-flight and adding them into the pool of remaining beans. As in the
 	 * beginning, the machine starts with one bean at the top.
 	 */
+//will this use same beans?
+// or do the randomization again???
+
 	public void repeat() {
 		// TODO: Implement
+		beansInFlight = new LinkedList<BeanImpl>();
+
+		beansInFlight.add(beanTotal[0]);
+		slotBeanCount = new int[beanCount];
+		remainCount =beanCount-1;
+		xPosArray = new int[beanCount];
+
 	}
 
 	/**
@@ -150,7 +279,56 @@ public class BeanCounterLogicImpl implements BeanCounterLogic {
 	 */
 	public boolean advanceStep() {
 		// TODO: Implement
-		return false;
+		if(remainCount==0&&beansInFlight.size()==0)//machine shall be finished
+			return false;
+		else{
+			//fall down one step
+			//beansInFlight.size()>slotCount-1){
+			
+
+			if(beansInFlight.get(0).getYpos()==slotCount-1){
+				//TEST
+				int dropTo;
+				//if(!isLuck) {
+					//dropTo = beansInFlight.get(0).getSkillLevel();
+				//}else
+					dropTo = xPosArray[slotCount-1];				
+				//UPDATE SLOT
+				slotBeanCount[dropTo]++;
+				beansInFlight.removeFirst();
+			}
+
+			boolean newlyAdd = false;
+			if(remainCount>0){
+				beansInFlight.add(beanTotal[beanCount-remainCount]);
+				//xPosArray[0]=0;
+				remainCount--;
+				newlyAdd=true;
+			}
+			//update the x and y coordinate
+			for(int i=0;i< beansInFlight.size();i++){
+				//if(i==slotCount-1) {// do not touch the one in (0,0) if there is one
+				//	break;
+				//}
+				if(i==beansInFlight.size()-1){
+					if(newlyAdd)
+						break;
+				}
+				int size = beansInFlight.size();
+				int yPos = beansInFlight.get(i).getYpos()+1;	//consider using another way to get yPos
+				//int yPos = size-1-i;  //translate the index in the linked list to the yPos coordinate
+				if(yPos<slotCount){
+					xPosArray[yPos] = beansInFlight.get(i).setNewXpos();
+				}
+				beansInFlight.get(i).setNewYpos();
+
+				//beansInFlight.get(i).setNewXpos();
+				//beansInFlight.get(i).setNewYpos();
+			}
+
+			return true;
+		}		//if there is no change in status, return false
+		
 	}
 	
 	/**
